@@ -132,7 +132,7 @@ const Login = () => {
                         <div style={{ flex: 1, height: '1px', backgroundColor: 'var(--border)' }}></div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    <div className="login-demo-grid">
                         <div 
                             onClick={() => { setEmail('admin@gmail.com'); setPassword('password'); }}
                             style={{ 

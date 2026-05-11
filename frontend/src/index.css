@@ -98,3 +98,66 @@ body {
 .animate-slide {
   animation: slideIn 0.5s ease-out forwards;
 }
+
+/* Responsive Grid and Spacing Utilities */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+}
+
+.dashboard-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid, .dashboard-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 16px !important;
+  }
+  
+  header {
+    padding: 12px 16px !important;
+  }
+
+  .nav-desktop {
+    display: none !important;
+  }
+
+  .nav-mobile {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 12px;
+    justify-content: space-around;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+  }
+
+  .track-card {
+    border-radius: 1rem;
+    padding: 1.25rem;
+  }
+}
+
+.login-demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .login-demo-grid {
+    grid-template-columns: 1fr;
+  }
+}

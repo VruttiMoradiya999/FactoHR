@@ -13,7 +13,8 @@ import {
     Calendar,
     LogOut,
     X,
-    Check
+    Check,
+    Menu
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -44,7 +45,7 @@ const Layout = ({ children }) => {
     ];
 
     return (
-        <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-main)' }}>
+        <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-main)', paddingBottom: '70px' }}>
             {/* TOP NAVIGATION */}
             <header style={{
                 backgroundColor: 'white',
@@ -57,7 +58,7 @@ const Layout = ({ children }) => {
                 zIndex: 100,
                 boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
                     {/* Logo */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div style={{ 
@@ -66,11 +67,11 @@ const Layout = ({ children }) => {
                         }}>
                             <div style={{ width: '16px', height: '16px', backgroundColor: 'white', borderRadius: '4px' }}></div>
                         </div>
-                        <span style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-main)' }}>TrackPro</span>
+                        <span style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-main)' }}>TrackPro</span>
                     </div>
 
-                    {/* Nav Links */}
-                    <nav style={{ display: 'flex', gap: '8px' }}>
+                    {/* Nav Links (Desktop) */}
+                    <nav className="nav-desktop" style={{ display: 'flex', gap: '4px' }}>
                         {navItems.map((item) => {
                             const Icon = item.icon;
                             const isActive = location.pathname === item.path;
@@ -79,8 +80,9 @@ const Layout = ({ children }) => {
                                     key={item.name}
                                     to={item.path}
                                     className={`nav-link ${isActive ? 'active' : ''}`}
+                                    style={{ fontSize: '14px' }}
                                 >
-                                    <Icon size={18} />
+                                    <Icon size={16} />
                                     {item.name}
                                 </Link>
                             );
@@ -88,9 +90,8 @@ const Layout = ({ children }) => {
                     </nav>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                    <div style={{ display: 'flex', gap: '16px', color: 'var(--text-muted)' }}>
-                        {/* Notifications */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <div style={{ display: 'flex', gap: '12px', color: 'var(--text-muted)' }}>
                         <div style={{ position: 'relative' }}>
                             <Bell 
                                 size={20} 
@@ -103,22 +104,21 @@ const Layout = ({ children }) => {
                                 {showNotifications && (
                                     <motion.div 
                                         initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                                        style={{ position: 'absolute', top: '35px', right: '-50px', width: '300px', backgroundColor: 'white', border: '1px solid var(--border)', borderRadius: '12px', boxShadow: 'var(--shadow)', padding: '16px', zIndex: 1000 }}
+                                        style={{ position: 'absolute', top: '35px', right: '-50px', width: '280px', backgroundColor: 'white', border: '1px solid var(--border)', borderRadius: '12px', boxShadow: 'var(--shadow)', padding: '16px', zIndex: 1000 }}
                                     >
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                                            <h4 style={{ fontWeight: 700, color: 'var(--text-main)' }}>Notifications</h4>
-                                            <span style={{ fontSize: '11px', color: 'var(--primary)', cursor: 'pointer' }}>Mark all read</span>
+                                            <h4 style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '14px' }}>Notifications</h4>
+                                            <span style={{ fontSize: '11px', color: 'var(--primary)', cursor: 'pointer' }}>Mark all</span>
                                         </div>
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                             {notifications.map(n => (
                                                 <div key={n.id} style={{ display: 'flex', gap: '12px', paddingBottom: '12px', borderBottom: '1px solid #f1f5f9' }}>
-                                                    <div style={{ width: '32px', height: '32px', backgroundColor: '#f5f3ff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', flexShrink: 0 }}>
-                                                        <Check size={16} />
+                                                    <div style={{ width: '28px', height: '28px', backgroundColor: '#f5f3ff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', flexShrink: 0 }}>
+                                                        <Check size={14} />
                                                     </div>
                                                     <div>
-                                                        <p style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-main)' }}>{n.title}</p>
-                                                        <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{n.desc}</p>
-                                                        <span style={{ fontSize: '10px', color: '#94a3b8' }}>{n.time}</span>
+                                                        <p style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-main)' }}>{n.title}</p>
+                                                        <p style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{n.desc}</p>
                                                     </div>
                                                 </div>
                                             ))}
@@ -127,15 +127,7 @@ const Layout = ({ children }) => {
                                 )}
                             </AnimatePresence>
                         </div>
-
-                        <MessageCircle size={20} style={{ cursor: 'pointer' }} onClick={() => navigate('/dashboard')} />
-                        
-                        {/* Settings */}
-                        <Settings 
-                            size={20} 
-                            style={{ cursor: 'pointer', color: showSettings ? 'var(--primary)' : 'inherit' }} 
-                            onClick={() => setShowSettings(true)}
-                        />
+                        <Settings size={20} style={{ cursor: 'pointer' }} onClick={() => setShowSettings(true)} />
                     </div>
                     
                     <div style={{ position: 'relative' }}>
@@ -144,7 +136,7 @@ const Layout = ({ children }) => {
                             alt="Avatar" 
                             onClick={() => setShowUserMenu(!showUserMenu)}
                             style={{
-                                width: '36px', height: '36px', borderRadius: '50%',
+                                width: '32px', height: '32px', borderRadius: '50%',
                                 border: '2px solid white', boxShadow: '0 0 0 1px #e2e8f0', cursor: 'pointer'
                             }}
                         />
@@ -153,19 +145,15 @@ const Layout = ({ children }) => {
                                 <motion.div 
                                     initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
                                     style={{
-                                        position: 'absolute', top: '48px', right: 0, width: '180px',
+                                        position: 'absolute', top: '40px', right: 0, width: '160px',
                                         backgroundColor: 'white', border: '1px solid var(--border)', borderRadius: '12px',
-                                        boxShadow: 'var(--shadow)', padding: '8px', overflow: 'hidden'
+                                        boxShadow: 'var(--shadow)', padding: '4px', zIndex: 1000
                                     }}
                                 >
-                                    <div style={{ padding: '8px', borderBottom: '1px solid var(--border)', marginBottom: '4px' }}>
-                                        <p style={{ fontWeight: 600, fontSize: '13px' }}>{user?.name}</p>
-                                        <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{user?.email}</p>
-                                    </div>
                                     <button onClick={handleLogout} style={{
                                         width: '100%', display: 'flex', alignItems: 'center', gap: '8px',
-                                        padding: '8px', backgroundColor: 'transparent', color: '#ef4444',
-                                        fontSize: '13px', borderRadius: '6px', border: 'none', cursor: 'pointer'
+                                        padding: '10px', backgroundColor: 'transparent', color: '#ef4444',
+                                        fontSize: '12px', borderRadius: '8px', border: 'none', cursor: 'pointer'
                                     }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#fef2f2'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
                                         <LogOut size={14} /> Logout
                                     </button>
@@ -176,42 +164,49 @@ const Layout = ({ children }) => {
                 </div>
             </header>
 
+            {/* MOBILE NAVIGATION BAR */}
+            <nav className="nav-mobile" style={{ display: 'none' }}>
+                {navItems.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = location.pathname === item.path;
+                    return (
+                        <Link
+                            key={item.name}
+                            to={item.path}
+                            style={{
+                                display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px',
+                                color: isActive ? 'var(--primary)' : 'var(--text-muted)', textDecoration: 'none',
+                                fontSize: '10px', fontWeight: isActive ? 600 : 400
+                            }}
+                        >
+                            <Icon size={20} />
+                            {item.name}
+                        </Link>
+                    );
+                })}
+            </nav>
+
             {/* Settings Modal */}
             <AnimatePresence>
                 {showSettings && (
-                    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000 }}>
+                    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000, padding: '16px' }}>
                         <motion.div 
                             initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}
-                            className="track-card" style={{ width: '500px', position: 'relative' }}
+                            className="track-card" style={{ width: '100%', maxWidth: '400px', position: 'relative' }}
                         >
                             <button onClick={() => setShowSettings(false)} style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', cursor: 'pointer' }}><X size={20} /></button>
-                            <h2 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '24px' }}>Settings</h2>
+                            <h2 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '20px' }}>Settings</h2>
                             
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                 <div>
-                                    <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Theme Preference</h4>
-                                    <div style={{ display: 'flex', gap: '12px' }}>
-                                        <div style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '2px solid var(--primary)', backgroundColor: '#f8f9fd', textAlign: 'center', cursor: 'pointer' }}>
-                                            <p style={{ fontSize: '13px', fontWeight: 600 }}>Light Mode</p>
-                                        </div>
-                                        <div style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '1px solid var(--border)', backgroundColor: '#1e293b', color: 'white', textAlign: 'center', cursor: 'pointer', opacity: 0.5 }}>
-                                            <p style={{ fontSize: '13px', fontWeight: 600 }}>Dark Mode (Soon)</p>
-                                        </div>
+                                    <h4 style={{ fontSize: '13px', fontWeight: 600, marginBottom: '10px' }}>Theme</h4>
+                                    <div style={{ display: 'flex', gap: '8px' }}>
+                                        <div style={{ flex: 1, padding: '10px', borderRadius: '10px', border: '2px solid var(--primary)', backgroundColor: '#f8f9fd', textAlign: 'center', fontSize: '12px', fontWeight: 600 }}>Light</div>
+                                        <div style={{ flex: 1, padding: '10px', borderRadius: '10px', border: '1px solid var(--border)', backgroundColor: '#1e293b', color: 'white', textAlign: 'center', opacity: 0.5, fontSize: '12px' }}>Dark (Soon)</div>
                                     </div>
                                 </div>
-
-                                <div>
-                                    <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Email Notifications</h4>
-                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px', backgroundColor: '#f8f9fd', borderRadius: '12px' }}>
-                                        <span style={{ fontSize: '13px' }}>Notify me about new requests</span>
-                                        <div style={{ width: '40px', height: '20px', backgroundColor: 'var(--primary)', borderRadius: '10px', position: 'relative', cursor: 'pointer' }}>
-                                            <div style={{ position: 'absolute', right: '2px', top: '2px', width: '16px', height: '16px', backgroundColor: 'white', borderRadius: '50%' }}></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setShowSettings(false)}>
-                                    Save Changes
+                                <button className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '14px' }} onClick={() => setShowSettings(false)}>
+                                    Save
                                 </button>
                             </div>
                         </motion.div>
