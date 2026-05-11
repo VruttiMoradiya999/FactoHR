@@ -27,11 +27,18 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => res.json({ message: 'HubStaff API is running' }));
 app.get('/api/test', (req, res) => res.json({ message: 'Backend is reachable!' }));
 
-// Routes
+// Routes (with and without /api prefix for robustness)
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/auth', require('./routes/authRoutes'));
+
 app.use('/api/employees', require('./routes/employeeRoutes'));
+app.use('/employees', require('./routes/employeeRoutes'));
+
 app.use('/api/attendance', require('./routes/attendanceRoutes'));
+app.use('/attendance', require('./routes/attendanceRoutes'));
+
 app.use('/api/leaves', require('./routes/leaveRoutes'));
+app.use('/leaves', require('./routes/leaveRoutes'));
 
 // Error Handling
 app.use((err, req, res, next) => {
