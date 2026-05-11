@@ -1,0 +1,50 @@
+.gh-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(1, 4, 9, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.gh-modal {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(1, 4, 9, 0.5);
+}
+
+.gh-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 1rem;
+}
+
+.gh-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.gh-search-input {
+    background: transparent;
+    border: none;
+    color: #e6edf3;
+    font-size: 0.875rem;
+    width: 100%;
+    outline: none;
+}

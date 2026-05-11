@@ -1,0 +1,35 @@
+.gh-sidebar {
+    width: 296px;
+    padding: 2rem 1.5rem;
+    border-right: 1px solid #30363d;
+    min-height: calc(100vh - 57px);
+}
+
+.gh-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    color: #e6edf3;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    transition: background-color 0.15s;
+}
+
+.gh-nav-item:hover {
+    background-color: #21262d;
+}
+
+.gh-nav-item.active {
+    font-weight: 600;
+    background-color: #21262d;
+    border-left: 2px solid #fd8c73;
+}
+
+.gh-main {
+    flex: 1;
+    padding: 2rem 3rem;
+    min-width: 0;
+}
