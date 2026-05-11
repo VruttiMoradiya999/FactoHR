@@ -101,13 +101,13 @@ const Dashboard = () => {
     return (
         <div className="animate-slide">
             {/* HEADER SECTION */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '20px', marginBottom: '32px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '32px' }}>
                 <div>
                     <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginBottom: '4px' }}>Manage and Track Your Team</p>
                     <h1 style={{ fontSize: '28px', fontWeight: 700 }}>Team Dashboard</h1>
                 </div>
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', gap: '24px' }}>
                         <div>
                             <p style={{ color: 'var(--text-muted)', fontSize: '11px' }}>Attendance</p>
@@ -119,21 +119,23 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                        <Search size={16} style={{ position: 'absolute', left: '12px', color: 'var(--text-muted)' }} />
-                        <input 
-                            type="text" 
-                            placeholder="Search..." 
-                            style={{ 
-                                padding: '8px 12px 8px 36px', borderRadius: '20px', border: '1px solid var(--border)', 
-                                backgroundColor: 'white', width: '160px', fontSize: '13px' 
-                            }} 
-                        />
+                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+                        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                            <Search size={16} style={{ position: 'absolute', left: '12px', color: 'var(--text-muted)' }} />
+                            <input 
+                                type="text" 
+                                placeholder="Search..." 
+                                style={{ 
+                                    padding: '8px 12px 8px 36px', borderRadius: '20px', border: '1px solid var(--border)', 
+                                    backgroundColor: 'white', width: '160px', fontSize: '13px' 
+                                }} 
+                            />
+                        </div>
+                        
+                        <button className="btn-primary" onClick={() => navigate('/employees')} style={{ fontSize: '14px' }}>
+                            <Plus size={16} /> Add Member
+                        </button>
                     </div>
-                    
-                    <button className="btn-primary" onClick={() => navigate('/employees')} style={{ fontSize: '14px' }}>
-                        <Plus size={16} /> Add Member
-                    </button>
                 </div>
             </div>
 

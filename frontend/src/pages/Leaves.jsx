@@ -59,12 +59,12 @@ const Leaves = () => {
 
     return (
         <div className="animate-slide">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
                 <div>
                     <h1 style={{ fontSize: '28px', fontWeight: 700 }}>Leave Management</h1>
                     <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>Track and process time-off applications.</p>
                 </div>
-                <button className="btn-primary" onClick={() => setIsModalOpen(true)}>
+                <button className="btn-primary" onClick={() => setIsModalOpen(true)} style={{ width: 'fit-content' }}>
                     <FilePlus size={18} /> Apply Leave
                 </button>
             </div>

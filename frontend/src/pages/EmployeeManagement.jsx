@@ -96,12 +96,12 @@ const EmployeeManagement = () => {
 
     return (
         <div className="animate-slide">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
                 <div>
                     <h1 style={{ fontSize: '28px', fontWeight: 700 }}>Team Members</h1>
                     <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>Manage your workforce and their roles.</p>
                 </div>
-                <button className="btn-primary" onClick={() => handleOpenModal()}>
+                <button className="btn-primary" onClick={() => handleOpenModal()} style={{ width: 'fit-content' }}>
                     <Plus size={18} /> Add Member
                 </button>
             </div>
